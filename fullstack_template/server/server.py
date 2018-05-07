@@ -1,8 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask import jsonify
 from json import *
+from flask_cors import CORS
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
+CORS(app)
 
 @app.route("/")
 def index():
@@ -21,7 +23,11 @@ def getCrimeList():
     ]
     return jsonify(results = list)
 
-
+@app.route('/disclaimer', methods = ['POST'])
+def post_disclaimer():
+    print('hi')
+    data = request.get_json(silent=True)
+    return data
 
 if __name__ == "__main__":
     app.run(debug=True)

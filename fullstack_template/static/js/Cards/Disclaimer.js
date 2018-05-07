@@ -1,4 +1,5 @@
 import '../../css/index.css';
+import axios from 'axios';
 import {Card, CardActions, CardHeader, CardTitle, CardText, Checkbox, RaisedButton} from 'material-ui';
 import React from 'react';
 
@@ -19,9 +20,12 @@ export default class Disclaimer extends React.Component {
       isDisclaimerChecked: this.state.checked //returns true or false
     }
     //send data to flask here
-
-      //handles change to next question - this will need to be asynchronous once backend post completes
-    this.props.next();
+    axios.post('localhost:5000/disclaimer', {
+      data: data
+    }).then(result => {
+      console.log(result)
+        this.props.next()
+      })
   }
 
   render () {

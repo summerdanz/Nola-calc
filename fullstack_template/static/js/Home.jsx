@@ -26,7 +26,7 @@ export default class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      cardDisplay: 5,
+      cardDisplay: 0,
       crimeList: []
     }
   }
