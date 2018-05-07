@@ -8,7 +8,7 @@ export default class SelectFelonies extends React.Component {
     super(props);
     this.state = {
       count: 2, //this will need to be updated via component will mount below from backend
-      feloniesArray: [0, 0],
+      feloniesArray: [],
       value: 0
     }
   }
@@ -32,10 +32,11 @@ export default class SelectFelonies extends React.Component {
 
   //form controls
   handleChange = event => {this.setState({ value: event.target.value })};
-  handleValue = (event, index) => {
-    console.log(event.target.value)
+
+  //THIS IS CURRENTLY BROKEN
+  handleValue = (event, index, value) => {
     let values = this.state.feloniesArray;
-    values.splice(index, 0, event.target.value);
+    values.push(value);
     console.log(values)
     this.setState({ feloniesArray: values })
   };
@@ -63,7 +64,8 @@ export default class SelectFelonies extends React.Component {
       selectFields.push(
         <Row>
           <SelectField
-              value={this.state.value}
+              value={this.props.crimeList[i]}
+              data-key={i}
               key={i}
               onChange={this.handleValue}
               maxHeight={500}
