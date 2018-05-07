@@ -11,7 +11,7 @@ export default class SelectFelonies extends React.Component {
     }
   }
 
-//SUMMER - need to uncomment this and link to backend to grab how many felonies entered in PreviousFelonies.jsx
+//SUMMER - need to uncomment this and link to backend to grab number of felonies entered in PreviousFelonies.jsx
   // componentWillMount(){
   //   //gets list of all crimes from backend
   //   fetch('http://localhost:5000/?????', { //will need to put the route you need here - send count from PreviousFelonies.jsx
@@ -53,7 +53,7 @@ export default class SelectFelonies extends React.Component {
         <Card>
           <CardText>
             <Row>
-              <p><strong>You indicated that your client has {this.state.count} prior felony convictions.</strong>
+              <p><strong>You indicated that your client has {this.state.count} prior felony convictions.</strong></p>
               <p>For each of your client's prior convictions, select the crime, below:
               When you are done, click Continue.</p>
             </Row>
@@ -64,7 +64,7 @@ export default class SelectFelonies extends React.Component {
                   maxHeight={500}
                   autoWidth={true}
               >
-              {items}
+              {itemList}
             </SelectField>
           </Row>
           </CardText>
