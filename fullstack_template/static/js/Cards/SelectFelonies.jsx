@@ -8,7 +8,7 @@ export default class SelectFelonies extends React.Component {
     super(props);
     this.state = {
       count: 2, //this will need to be updated via component will mount below from backend
-      feloniesArray: [0, 0], //will need to populate this with # of 0's depending on count
+      feloniesArray: [0, 0], //this will be populated by arr below, based on received count
       value: 0
     }
   }
@@ -23,8 +23,13 @@ export default class SelectFelonies extends React.Component {
   //   })
   //     .then(r => r.json())
   //     .then(r => {
-  //       this.setState({
-  //         count: r
+           // let arr = [];
+           // for(let i=0; i<r;i++){
+           //   arr.push(0)
+           // }
+           // this.setState({
+  //         count: r,
+  //         feloniesArray: arr
   //       })
   //     })
   //     .catch(err => console.log(err))
