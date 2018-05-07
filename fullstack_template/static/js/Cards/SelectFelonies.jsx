@@ -7,7 +7,8 @@ export default class SelectFelonies extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      count: 2 //this will need to be updated via component will mount below from backend
+      count: 2, //this will need to be updated via component will mount below from backend
+      feloniesArray: []
     }
   }
 
@@ -30,12 +31,16 @@ export default class SelectFelonies extends React.Component {
 
   //form controls
   handleChange = event => {this.setState({ value: event.target.value })};
-
+  handleValue = event => {
+    let values = this.state.feloniesArray;
+    values.push(event.target.value);
+    this.setState({ feloniesArray: values })
+  };
 
   //submit button
   handleSubmit = () => {
     const data = {
-
+      whichFelonies: feloniesArray //array of selected felonies from dropdown
     }
     //send data to flask here
 
@@ -43,12 +48,29 @@ export default class SelectFelonies extends React.Component {
     //handles change to next question - this will need to be asynchronous once backend post completes
     this.props.next();
   }
+
   render () {
     //mapping list of crimes into menu items for dropdown list
     let itemList = this.props.crimeList;
     itemList = itemList.map((x, i) => {
       return <MenuItem primaryText={x.text} value={i} key={i}/>
     })
+    let selectFields = [];
+    for(let i=0; i< this.state.count; i++){
+      selectFields.push(
+        <Row>
+          <SelectField
+              value={i}
+              key={i}
+              onChange={this.handleValue}
+              maxHeight={500}
+              autoWidth={true}
+          >
+          {itemList}
+        </SelectField>
+      </Row>
+      );
+    }
     return(
         <Card>
           <CardText>
@@ -57,16 +79,7 @@ export default class SelectFelonies extends React.Component {
               <p>For each of your client's prior convictions, select the crime, below:
               When you are done, click Continue.</p>
             </Row>
-            <Row>
-              <SelectField
-                  value={this.state.value}
-                  onChange={this.handleSelectChange}
-                  maxHeight={500}
-                  autoWidth={true}
-              >
-              {itemList}
-            </SelectField>
-          </Row>
+              {selectFields}
           </CardText>
           <CardActions>
             <RaisedButton
