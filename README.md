@@ -1,52 +1,58 @@
 ## Local Development Instructions
 
-### Only do this the first time:
+### Machine configuration:
 
-1. If you don't have Homebrew, install it- terminal (anywhere)
+* If you don't have Homebrew, install it- terminal (anywhere)
 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-1. Install Node/npm - terminal (anywhere)
+* Install Node/npm - terminal (anywhere)
 
 `brew install node`
 
-1. if Github is not configured:
+* if Github is not configured:
 
   first step: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
   second step: https://help.github.com/articles/connecting-to-github-with-ssh/
 
-1. Install dependencies-terminal (inside project root)
+* Clone repository
+
+`git clone https://github.com/summerdanz/Nola-calc.git`
+
+* Install dependencies-terminal (inside project root)
+
+`cd Nola-calc`
 
 `npm install`
 
-1. Install dependencies- terminal (inside fullstack_template/static)
+* Install dependencies- terminal (inside fullstack_template/static)
 
 `npm install`
 
-1. Install python3 - terminal (anywhere)
+* Install python3 - terminal (anywhere)
 
 `brew install python`
 
-1. Use pip (comes with python) to install pipenv
+* Use pip (comes with python) to install pipenv
 
 `pip3 install --user pipenv`
 
 `sudo pip3 install virtualenv`
 
-1.  intall dependencies (inside fullstack_template/server)
+*  intall dependencies (`cd fullstack_template/server`)
 
 `pipenv install requests`
 
-1. activate virtual environment (inside fullstack_template/server)
+* activate virtual environment (inside fullstack_template/server)
 
 `pipenv shell`
 
-1. install flask (inside fullstack_template/server)
+* install flask (inside fullstack_template/server)
 
 `pip3 install flask`
 
-1. install flask_cors (inside fullstack_template/server)
+* install flask_cors (inside fullstack_template/server)
 
 `pip3 install flask_cors`
 
@@ -55,15 +61,15 @@
 
 ### To run local development environment:
 
-1. inside fullstack_template/static:
+* inside fullstack_template/static:
 
 `npm run watch`  (ctrl + c to stop)
 
-1. In a new terminal window, inside fullstack_template/server:
+* In a new terminal window, inside fullstack_template/server:
 
 `python3 server.py`
 
-1. find project at `localhost:5000`
+* find project at `localhost:5000`
 
 ** make sure cookies are disabled on this url in Google Chrome
 
