@@ -12,7 +12,6 @@ def index():
 
 @app.route("/list/")
 def getCrimeList():
-    # need to complete list, possibly add values?
     list = [
      "Solicitation for murder (RS 14:28.1) ",
     "First degree murder (RS 14:30) ",
@@ -107,6 +106,15 @@ def post_crime_info():
      sentence_month = json['sentenceMonth']
      return jsonify('OK')
 
+@app.route('/selectFelonies',  methods=['POST'])
+def post_relation():
+     json = request.get_json()
+     previousFeloniesValue = json['whichFelonies']
+     # this will give you an array of values [0,1,2 etc] that correspond
+     # to the index of the crime selected from the list
+     # ie solicitation for murder =0; Second degree battery (RS 14:34.1) =4, etc;
+     # return jsonify(relation=relation) --- this is how you would return dataType
+     return jsonify('OK')
 
 if __name__ == "__main__":
     app.run(debug=True)

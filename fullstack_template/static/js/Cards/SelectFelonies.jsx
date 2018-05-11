@@ -13,14 +13,16 @@ export default class SelectFelonies extends React.Component {
     }
   }
 
-//gets count of felonies entered into previous page - also gets list of all options from backend
+//gets count of felonies entered into previous page
   componentWillMount(){
+    //if no previous felonies, skip to the next question
+    if(this.props.previousCount === 0){
+      this.props.next()
+    }
     let arr = [];
     for(let i = 0; i < this.props.previousCount; i++){
       arr.push(0)
     };
-    console.log(arr);
-    console.log(this.props.previousCount)
     this.setState({
       count: this.props.previousCount,
       feloniesArray: arr
@@ -42,7 +44,7 @@ export default class SelectFelonies extends React.Component {
       whichFelonies: feloniesArray //array of selected felonies from dropdown
     }
     const origin = window.location.origin;
-    var url =  origin + '/disclaimer'
+    var url =  origin + '/selectFelonies'
      $.ajax({
        url: url,
        dataType: 'json',
