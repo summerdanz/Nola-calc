@@ -19,13 +19,21 @@ export default class Disclaimer extends React.Component {
     const data = {
       isDisclaimerChecked: this.state.checked //returns true or false
     }
-    //send data to flask here
-    axios.post('localhost:5000/disclaimer', {
-      data: data
-    }).then(result => {
-      console.log(result)
-        this.props.next()
-      })
+    const origin = window.location.origin;
+    var url =  origin + '/disclaimer'
+   $.ajax({
+     url: url,
+     dataType: 'json',
+     type: 'POST',
+     data: JSON.stringify(data),
+     contentType: 'application/json; charset=utf-8',
+     success: function(response){
+       this.props.next()
+     }.bind(this),
+     error: function(xhr, status, err){
+       console.log(err);
+     }.bind(this)
+   });
   }
 
   render () {

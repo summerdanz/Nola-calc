@@ -23,11 +23,11 @@ def getCrimeList():
     ]
     return jsonify(results = list)
 
-@app.route('/disclaimer', methods = ['POST'])
+@app.route('/disclaimer',  methods=['POST'])
 def post_disclaimer():
-    print('hi')
-    data = request.get_json(silent=True)
-    return data
+     json = request.get_json()
+     disclaimer_checked = json['isDisclaimerChecked']
+     return jsonify(disclaimer_checked=disclaimer_checked)
 
 if __name__ == "__main__":
     app.run(debug=True)
