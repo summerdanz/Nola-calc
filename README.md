@@ -20,34 +20,44 @@ Only do this the first time:
 `npm install`
 
 1. Install python3 - terminal (anywhere)
+
 `brew install python`
 
 1. Use pip (comes with python) to install pipenv
+
 `pip3 install --user pipenv`
+
 `sudo pip3 install virtualenv`
 
 1.  intall dependencies (inside fullstack_template/server)
+
 `pipenv install requests`
 
 1. activate virtual environment (inside fullstack_template/server)
+
 `pipenv shell`
 
 1. install flask (inside fullstack_template/server)
+
 `pip3 install flask`
 
 1. install flask_cors (inside fullstack_template/server)
+
 `pip3 install flask_cors`
 
 --
 To run local development environment:
 
 1. inside fullstack_template/static:
+
 `npm run watch`  (ctrl + c to stop)
 
 1. In a new terminal window, inside fullstack_template/server:
+
 `python3 server.py`
 
 1. find project at `localhost:5000`
+
 ** make sure cookies are disabled on this url in Google Chrome
 
 
