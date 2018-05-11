@@ -11,6 +11,8 @@ import Relationship from './Cards/Relationship';
 import CurrentCharge from './Cards/CurrentCharge';
 import PreviousFelonies from './Cards/PreviousFelonies';
 import SelectFelonies from './Cards/SelectFelonies';
+import Dates from './Cards/Dates';
+import Results from './Cards/Results';
 
 const style = {
   paperStyle: {
@@ -47,15 +49,8 @@ export default class Home extends React.Component {
       })
       .catch(err => console.log(err))
   }
-  //array of quesitons - probably want to change this depending on how backend is written
-components = [
-        {name: Welcome},
-        {name: Disclaimer},
-        {name: Relationship},
-        {name: CurrentCharge},
-        {name: PreviousFelonies},
-        {name: SelectFelonies}
-    ];
+  //array of cards
+components = [Welcome, Disclaimer, Relationship, CurrentCharge, PreviousFelonies, SelectFelonies, Dates, Results];
 
   //changes which question is being displayed (goes to next)
   handleNext = (data) => {
@@ -81,8 +76,12 @@ components = [
     })
   }
 
+  startOver = () => {
+    cardDisplay: 0
+  }
+
   render () {
-    let ComponentCard = this.components[this.state.cardDisplay].name;
+    let ComponentCard = this.components[this.state.cardDisplay];
 
     //only display back button after first question
     let backButton = '';
@@ -106,7 +105,14 @@ components = [
         <Row>
           <Col xs style={style.column}>
               <Paper style={style.paperStyle} zDepth={3}>
-                <ComponentCard crimeList={this.state.crimeList} next={this.handleNext} previous={this.handlePrevious} previousCountFunction={this.liftPreviousCount} previousCount={this.state.PreviousFeloniesCount}/>
+                <ComponentCard
+                  crimeList={this.state.crimeList}
+                  next={this.handleNext}
+                  previous={this.handlePrevious}
+                  previousCountFunction={this.liftPreviousCount}
+                  previousCount={this.state.PreviousFeloniesCount}
+                  startOver={this.startOver}
+                  />
               </Paper>
           </Col>
         </Row>

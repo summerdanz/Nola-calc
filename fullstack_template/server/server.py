@@ -107,7 +107,7 @@ def post_crime_info():
      return jsonify('OK')
 
 @app.route('/selectFelonies',  methods=['POST'])
-def post_relation():
+def post_select_felonies():
      json = request.get_json()
      previousFeloniesValue = json['whichFelonies']
      # this will give you an array of values [0,1,2 etc] that correspond
@@ -115,6 +115,25 @@ def post_relation():
      # ie solicitation for murder =0; Second degree battery (RS 14:34.1) =4, etc;
      # return jsonify(relation=relation) --- this is how you would return dataType
      return jsonify('OK')
+
+@app.route('/dates',  methods=['POST'])
+def post_dates():
+     json = request.get_json()
+     arrest_date = json['arrestDate']
+     release_value = json['releaseValue']
+     release_date = json['releaseDate']
+     conviction_date = json['convictDate']
+     return jsonify('OK')
+
+@app.route("/results")
+def getResults():
+    # Below are examples of how the data should be stored - this is where the calculations will be sent to the results page
+    goodTimeReleaseDate = "8/8/18"
+    earlyRelease = "Based on your inputs, your client is not eligible for an early release based on good time served because his or her current charge is a crime of violence and your client has at least one prior conviction for a crime of violence or a sex offense."
+    paroleEligibilityDate = "8/8/18"
+    paroleEligibility = "Based on your inputs, your client is not eligible for parole because his or her current charge is a crime of violence and your client has two or more prior convictions for crimes of violence."
+    lastReleaseDate = "8/8/18"
+    return jsonify(goodTimeReleaseDate=goodTimeReleaseDate, earlyRelease=earlyRelease, paroleEligibility=paroleEligibility, paroleEligibilityDate=paroleEligibilityDate, lastReleaseDate=lastReleaseDate)
 
 if __name__ == "__main__":
     app.run(debug=True)

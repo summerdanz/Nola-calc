@@ -41,7 +41,7 @@ export default class SelectFelonies extends React.Component {
   //submit button
   handleSubmit = () => {
     const data = {
-      whichFelonies: feloniesArray //array of selected felonies from dropdown
+      whichFelonies: this.state.feloniesArray //array of selected felonies from dropdown
     }
     const origin = window.location.origin;
     var url =  origin + '/selectFelonies'
