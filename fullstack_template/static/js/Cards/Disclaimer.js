@@ -27,7 +27,7 @@ export default class Disclaimer extends React.Component {
      type: 'POST',
      data: JSON.stringify(data),
      contentType: 'application/json; charset=utf-8',
-     success: function(response){
+     success: function(){
        this.props.next()
      }.bind(this),
      error: function(xhr, status, err){

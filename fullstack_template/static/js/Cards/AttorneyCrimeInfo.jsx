@@ -40,11 +40,21 @@ export default class AttorneyCrimeInfo extends React.Component {
       sentenceMonth: this.state.monthValue //returns number 0<= x <=12
     }
     //sends data to backend
-      //NEED TO PUT POST HERE
-
-
-      //handles change to next question - this will need to be asynchronous once backend post completes
-    this.props.next();
+    const origin = window.location.origin;
+    var url =  origin + '/CrimeInfo'
+     $.ajax({
+       url: url,
+       dataType: 'json',
+       type: 'POST',
+       data: JSON.stringify(data),
+       contentType: 'application/json; charset=utf-8',
+       success: function(response){
+         this.props.next()
+       }.bind(this),
+       error: function(xhr, status, err){
+         console.log(err);
+       }.bind(this)
+     });
   }
 
   render () {

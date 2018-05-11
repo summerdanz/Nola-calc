@@ -17,10 +17,21 @@ export default class Relationship extends React.Component {
       relation: this.state.value
     }
     //send data to flask here
-
-
-    //handles change to next question - this will need to be asynchronous once backend post completes
-    this.props.next();
+    const origin = window.location.origin;
+    var url =  origin + '/relation'
+     $.ajax({
+       url: url,
+       dataType: 'json',
+       type: 'POST',
+       data: JSON.stringify(data),
+       contentType: 'application/json; charset=utf-8',
+       success: function(response){
+         this.props.next()
+       }.bind(this),
+       error: function(xhr, status, err){
+         console.log(err);
+       }.bind(this)
+     });
   }
   render () {
     return(

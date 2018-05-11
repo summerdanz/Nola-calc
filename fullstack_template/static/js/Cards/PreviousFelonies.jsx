@@ -23,10 +23,21 @@ export default class PreviousFelonies extends React.Component {
       convictionCount: this.state.count //returns number
     }
     //send data to flask here
-
-
-    //handles change to next question - this will need to be asynchronous once backend post completes
-    this.props.next();
+    const origin = window.location.origin;
+    var url =  origin + '/PreviousFelonies'
+     $.ajax({
+       url: url,
+       dataType: 'json',
+       type: 'POST',
+       data: JSON.stringify(data),
+       contentType: 'application/json; charset=utf-8',
+       success: function(response){
+         this.props.next()
+       }.bind(this),
+       error: function(xhr, status, err){
+         console.log(err);
+       }.bind(this)
+     });
   }
   render () {
     //mapping list of crimes into menu items for dropdown list

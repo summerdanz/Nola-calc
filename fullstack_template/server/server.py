@@ -27,7 +27,32 @@ def getCrimeList():
 def post_disclaimer():
      json = request.get_json()
      disclaimer_checked = json['isDisclaimerChecked']
-     return jsonify(disclaimer_checked=disclaimer_checked)
+     return jsonify('OK')
+
+@app.route('/relation',  methods=['POST'])
+def post_relation():
+     json = request.get_json()
+     relation = json['relation']
+     # return jsonify(relation=relation) --- this is how you would return dataType
+     return jsonify('OK')
+
+@app.route('/PreviousFelonies',  methods=['POST'])
+def post_prev_felonies():
+     json = request.get_json()
+     convicted_before = json['convictedBefore']
+     conviction_count = json['convictionCount']
+     #return jsonify(convicted_before=convicted_before, conviction_count=conviction_count)
+     return jsonify('OK')
+
+@app.route('/CrimeInfo',  methods=['POST'])
+def post_crime_info():
+     json = request.get_json()
+     crime_selected = json['crimeSelected']
+     habitual_offender = json['isHabitualOffender']
+     sentence_year = json['sentenceYear']
+     sentence_month = json['sentenceMonth']
+     return jsonify('OK')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
