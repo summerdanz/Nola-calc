@@ -6,17 +6,21 @@ Only do this the first time:
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
 1. Install Node/npm - terminal (anywhere)
+
 `brew install node`
 
 1. if Github is not configured:
+
   first step: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
   second step: https://help.github.com/articles/connecting-to-github-with-ssh/
 
 1. Install dependencies-terminal (inside project root)
+
 `npm install`
 
 1. Install dependencies- terminal (inside fullstack_template/static)
+
 `npm install`
 
 1. Install python3 - terminal (anywhere)
