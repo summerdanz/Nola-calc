@@ -1,6 +1,7 @@
-### Local Development Instructions
+## Local Development Instructions
 
-Only do this the first time:
+### Only do this the first time:
+
 1. If you don't have Homebrew, install it- terminal (anywhere)
 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
@@ -50,7 +51,9 @@ Only do this the first time:
 `pip3 install flask_cors`
 
 --
-To run local development environment:
+
+
+### To run local development environment:
 
 1. inside fullstack_template/static:
 
