@@ -77,7 +77,9 @@ components = [Welcome, Disclaimer, Relationship, CurrentCharge, PreviousFelonies
   }
 
   startOver = () => {
-    cardDisplay: 0
+    this.setState({
+      cardDisplay: 0
+    })
   }
 
   render () {
