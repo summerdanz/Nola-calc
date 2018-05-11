@@ -8,7 +8,7 @@ export default class SelectFelonies extends React.Component {
     super(props);
     this.state = {
       count: 0, //this will need to be updated via component will mount below from backend
-      feloniesArray: [], //this will be populated by arr below, based on received count
+      feloniesArray: [], //this will be populated by arr in componentWillMount
       value: 0
     }
   }
@@ -41,18 +41,28 @@ export default class SelectFelonies extends React.Component {
     const data = {
       whichFelonies: feloniesArray //array of selected felonies from dropdown
     }
-    //send data to flask here
-
-
-    //handles change to next question - this will need to be asynchronous once backend post completes
-    this.props.next();
+    const origin = window.location.origin;
+    var url =  origin + '/disclaimer'
+     $.ajax({
+       url: url,
+       dataType: 'json',
+       type: 'POST',
+       data: JSON.stringify(data),
+       contentType: 'application/json; charset=utf-8',
+       success: function(){
+         this.props.next()
+       }.bind(this),
+       error: function(xhr, status, err){
+         console.log(err);
+       }.bind(this)
+     });
   }
 
   render () {
     //mapping list of crimes into menu items for dropdown list
     let itemList = this.props.crimeList;
     itemList = itemList.map((x, i) => {
-      return <MenuItem primaryText={x.text} value={i} key={i}/>
+      return <MenuItem primaryText={x} value={i} key={i}/>
     })
     let selectFields = [];
     for(let i=0; i< this.state.count; i++){

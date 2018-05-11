@@ -14,12 +14,12 @@ def index():
 def getCrimeList():
     # need to complete list, possibly add values?
     list = [
-    {"text": "Solicitation for murder (RS 14:28.1)"},
-    {"text": "First degree murder (RS 14:30)"},
-    {"text": "Solicitation for murder (RS 14:28.1)"},
-    {"text": "Second degree murder (RS 14:30.1)"},
-    {"text": "Manslaughter (RS 14:31)"},
-    {"text": "Aggravated battery (RS 14:34)"}
+     "Solicitation for murder (RS 14:28.1)",
+     "First degree murder (RS 14:30)",
+     "Solicitation for murder (RS 14:28.1)",
+     "Second degree murder (RS 14:30.1)",
+     "Manslaughter (RS 14:31)",
+    "Aggravated battery (RS 14:34)"
     ]
     return jsonify(results = list)
 

@@ -61,7 +61,7 @@ export default class CurrentCharge extends React.Component {
     //mapping list of crimes into menu items for dropdown list
     let items = this.props.crimeList;
     items = items.map((x, i) => {
-      return <MenuItem primaryText={x.text} value={i} key={i}/>
+      return <MenuItem primaryText={x} value={i} key={i}/>
     })
 
     return(
