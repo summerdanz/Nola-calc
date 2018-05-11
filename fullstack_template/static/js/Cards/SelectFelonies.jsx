@@ -7,36 +7,27 @@ export default class SelectFelonies extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      count: 2, //this will need to be updated via component will mount below from backend
-      feloniesArray: [0, 0], //this will be populated by arr below, based on received count
+      count: 0, //this will need to be updated via component will mount below from backend
+      feloniesArray: [], //this will be populated by arr below, based on received count
       value: 0
     }
   }
 
-//SUMMER - need to uncomment this and link to backend to grab number of felonies entered in PreviousFelonies.jsx
-  // componentWillMount(){
-  //   //gets list of all crimes from backend
-  //   fetch('http://localhost:5000/?????', { //will need to put the route you need here - send count from PreviousFelonies.jsx
-  //     method: 'GET',
-  //     mode:'no-cors',
-  //     dataType: 'json'
-  //   })
-  //     .then(r => r.json())
-  //     .then(r => {
-           // let arr = [];
-           // for(let i=0; i<r;i++){
-           //   arr.push(0)
-           // }
-           // this.setState({
-  //         count: r,
-  //         feloniesArray: arr
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+//gets count of felonies entered into previous page - also gets list of all options from backend
+  componentWillMount(){
+    let arr = [];
+    for(let i = 0; i < this.props.previousCount; i++){
+      arr.push(0)
+    };
+    console.log(arr);
+    console.log(this.props.previousCount)
+    this.setState({
+      count: this.props.previousCount,
+      feloniesArray: arr
+    })
+  }
 
-  //form controls
-  handleChange = event => {this.setState({ value: event.target.value })};
+  handleChange = (event) => {this.setState({ value: event.target.value })};
 
   //This fills feloniesArray with index of felony selected
   handleValue = (i, event, index, value) => {

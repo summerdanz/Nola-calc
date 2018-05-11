@@ -8,7 +8,7 @@ import {grey300} from 'material-ui/styles/colors';
 import Welcome from './Cards/Welcome';
 import Disclaimer from './Cards/Disclaimer';
 import Relationship from './Cards/Relationship';
-import AttorneyCrimeInfo from './Cards/AttorneyCrimeInfo';
+import CurrentCharge from './Cards/CurrentCharge';
 import PreviousFelonies from './Cards/PreviousFelonies';
 import SelectFelonies from './Cards/SelectFelonies';
 
@@ -27,7 +27,8 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       cardDisplay: 0,
-      crimeList: []
+      crimeList: [],
+      PreviousFeloniesCount: 0
     }
   }
 
@@ -51,7 +52,7 @@ components = [
         {name: Welcome},
         {name: Disclaimer},
         {name: Relationship},
-        {name: AttorneyCrimeInfo},
+        {name: CurrentCharge},
         {name: PreviousFelonies},
         {name: SelectFelonies}
     ];
@@ -71,6 +72,12 @@ components = [
     count--;
     this.setState({
       cardDisplay: count
+    })
+  }
+
+  liftPreviousCount = (count) => {
+    this.setState({
+      PreviousFeloniesCount: count
     })
   }
 
@@ -99,7 +106,7 @@ components = [
         <Row>
           <Col xs style={style.column}>
               <Paper style={style.paperStyle} zDepth={3}>
-                <ComponentCard crimeList={this.state.crimeList} next={this.handleNext} previous={this.handlePrevious}/>
+                <ComponentCard crimeList={this.state.crimeList} next={this.handleNext} previous={this.handlePrevious} previousCountFunction={this.liftPreviousCount} previousCount={this.state.PreviousFeloniesCount}/>
               </Paper>
           </Col>
         </Row>

@@ -44,7 +44,7 @@ def post_prev_felonies():
      #return jsonify(convicted_before=convicted_before, conviction_count=conviction_count)
      return jsonify('OK')
 
-@app.route('/CrimeInfo',  methods=['POST'])
+@app.route('/currentcharge',  methods=['POST'])
 def post_crime_info():
      json = request.get_json()
      crime_selected = json['crimeSelected']

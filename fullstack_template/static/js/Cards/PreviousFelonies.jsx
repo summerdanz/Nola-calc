@@ -32,6 +32,7 @@ export default class PreviousFelonies extends React.Component {
        data: JSON.stringify(data),
        contentType: 'application/json; charset=utf-8',
        success: function(response){
+         this.props.previousCountFunction(this.state.count)
          this.props.next()
        }.bind(this),
        error: function(xhr, status, err){

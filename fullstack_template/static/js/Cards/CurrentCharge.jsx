@@ -14,7 +14,7 @@ const style = {
   }
 };
 
-export default class AttorneyCrimeInfo extends React.Component {
+export default class CurrentCharge extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -41,7 +41,7 @@ export default class AttorneyCrimeInfo extends React.Component {
     }
     //sends data to backend
     const origin = window.location.origin;
-    var url =  origin + '/CrimeInfo'
+    var url =  origin + '/currentcharge'
      $.ajax({
        url: url,
        dataType: 'json',
