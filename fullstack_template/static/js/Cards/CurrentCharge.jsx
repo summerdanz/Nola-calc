@@ -19,7 +19,7 @@ export default class CurrentCharge extends React.Component {
     super(props);
     this.state = {
       value: 0,
-      radioValue: false,
+      radioValue: "No",
       yearValue: 0,
       monthValue: 0
     }
@@ -35,7 +35,7 @@ export default class CurrentCharge extends React.Component {
     //data collected from form
     const data = {
       crimeSelected: this.state.value, //returns array # (0-x)
-      isHabitualOffender: this.state.radioValue, //returns true or false
+      isHabitualOffender: this.state.radioValue, //returns yes or no
       sentenceYear: this.state.yearValue, //returns number >=0
       sentenceMonth: this.state.monthValue //returns number 0<= x <=12
     }
@@ -89,15 +89,15 @@ export default class CurrentCharge extends React.Component {
             <Row>
               <RadioButtonGroup
                   name="habitualOffender"
-                  defaultSelected="false"
+                  defaultSelected="No"
                   onChange={this.handleRadioChange}
                   >
                   <RadioButton
-                    value="true"
+                    value="Yes"
                     label="Yes"
                   />
                   <RadioButton
-                    value="false"
+                    value="No"
                     label="No"
                   />
                 </RadioButtonGroup>

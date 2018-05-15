@@ -7,13 +7,16 @@ export default class PreviousFelonies extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: false,
+      value: 'No',
       count: 0
     }
   }
 
   //form controls
-  handleChange = event => {this.setState({ value: event.target.value })};
+  handleChange = event => {
+    console.log('changed')
+    this.setState({ value: event.target.value })
+  };
   handleCountChange = event => {this.setState({ count: event.target.value })};
 
   //submit button
@@ -22,6 +25,7 @@ export default class PreviousFelonies extends React.Component {
       convictedBefore: this.state.value, //returns true or false
       convictionCount: this.state.count //returns number
     }
+    console.log(data)
     //send data to flask here
     const origin = window.location.origin;
     var url =  origin + '/PreviousFelonies'

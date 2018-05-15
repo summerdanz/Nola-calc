@@ -20,7 +20,6 @@ export default class Results extends React.Component {
       mode:'no-cors',
       dataType: 'json'
     })
-      .then(r => r.json())
       .then(r => {
         this.setState({
           goodTimeReleaseDate: r.goodTimeReleaseDate,

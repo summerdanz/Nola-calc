@@ -137,156 +137,25 @@ def post_dates():
      conviction_date = json['convictDate']
      return jsonify('OK')
 
-# # running functions
+
 # with app.app_context():
 #    getCrimeList()
 #    post_prev_felonies()
 #    post_crime_info()
 #    post_select_felonies()
 #    post_dates()
-#
-# totalsentence = (sentence_month + (sentence_year*12))*30
-#
-# #Current charge classification
-# if crime_selected[0] in range(0, 32):
-#     currchargetype = "violentcrime"
-# elif crime_selected[0] in range(33, 49):
-#     currchargetype = "sexualcrime"
-# elif crime_selected[0] in range(50, 58):
-#     currchargetype = "violsexcrime"
-# else:
-#     currchargetype = "othercrime"
-#
-# #Prior charge classification
-# violpriors = 0
-# sexpriors = 0
-# violsexpriors = 0
-# otherpriors = 0
-# if convicted_before == True:
-#     for charge in previousFeloniesValue:
-#         if charge in range(0, 32):
-#             violpriors = violpriors + 1
-#         elif charge in range(33, 49):
-#             sexpriors = sexpriors + 1
-#         elif charge in range(50, 58):
-#             violsexpriors = violsexpriors + 1
-#         else:
-#             otherpriors = otherpriors + 1
-#
-# #Parole release eligibility and calculations
-# if currchargetype == "othercrime":
-#     eligibleparole = True
-#     parolemultiplier = 0.25
-# elif currchargetype == "violentcrime":
-#     if numpriors == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.35
-#     elif (violpriors + violsexpriors) == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.65
-#     elif (violpriors + violsexpriors) == 1:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     else:
-#         eligibleparole = False
-# elif currchargetype == "sexualcrime":
-#     if numpriors == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     elif (sexpriors + violsexpriors) == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     elif (sexpriors + violsexpriors) == 1:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     else:
-#         eligibleparole = False
-# elif currchargetype == "violsexcrime":
-#     if numpriors == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     elif (sexpriors + violpriors + violsexpriors) == 0:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     elif (sexpriors + violpriors + violsexpriors) == 1:
-#         eligibleparole = True
-#         parolemultiplier = 0.75
-#     else:
-#         eligibleparole = False
-#
-# pretrialdetention = abs((conviction_date - arrest_date))
-# sentencedeltadays = timedelta(days = totalsentence)
-# if eligibleparole == True:
-#     parolereleasedate = conviction_date + (sentencedeltadays * parolemultiplier)
-#     paroledatestring= (str(parolereleasedate)[:10])
-#     paroleEligibilityString = ("Your client is eligible for parole after having served " +
-#     str(int(parolemultiplier*100)) + "%" + " of their sentence. ")
-# else:
-#     paroleEligibilityString = "Your client is not eligible for parole."
-#
-# if convicted_before == False:
-#     numpriors = 0
-# if convicted_before == True:
-#     numpriors = conviction_count
-#
-# #Good time eligibility and calculations
-# if currchargetype == "othercrime":
-#     if numpriors == 0:
-#         eligibleGT = True
-#         GTmultiplier = 0.35
-#     else:
-#         if habitual_offender == True:
-#             eligibleGT = False
-#         else:
-#             eligibleGT = True
-#             GTmultiplier = 0.35
-# elif currchargetype == "violentcrime":
-#     if numpriors == 0:
-#         eligibleGT = True
-#         GTmultiplier = 0.75
-#     else:
-#         if habitual_offender == True:
-#             eligibleGT = False
-#         else:
-#             if (sexpriors + violpriors + violsexpriors) > 0:
-#                 eligibleGT = False
-#             else:
-#                 eligibleGT = True
-#                 GTmultiplier = 0.75
-# elif currchargetype == "sexualcrime" or currchargetype == "violsexcrime":
-#     eligibleGT = False
-# if eligibleGT == True:
-#     GTreleasedate = conviction_date + (sentencedeltadays * GTmultiplier)
-#     GTdatestring= (str(GTreleasedate)[:10])
-#     earlyReleaseString = ("Your client is eligible for good time release after having served " +
-#     str(int(GTmultiplier*100)) + "%" + " of their sentence. ")
-# else:
-#     earlyReleaseString = "Your client is not eligible for good time release."
-#
-# ##Last possible release date
-# lastreleasedate = conviction_date + sentencedeltadays
-# lastdatestring= (str(lastreleasedate)[:10])
-
-
 
 @app.route("/results")
 def getResults():
-    # Below are examples of how the data should be stored - this is where the calculations will be sent to the results page
-    with app.app_context():
-       getCrimeList()
-       post_prev_felonies()
-       post_crime_info()
-       post_select_felonies()
-       post_dates()
 
     totalsentence = (sentence_month + (sentence_year*12))*30
 
     #Current charge classification
-    if crime_selected[0] in range(0, 32):
+    if crime_selected in range(0, 32):
         currchargetype = "violentcrime"
-    elif crime_selected[0] in range(33, 49):
+    elif crime_selected in range(33, 49):
         currchargetype = "sexualcrime"
-    elif crime_selected[0] in range(50, 58):
+    elif crime_selected in range(50, 58):
         currchargetype = "violsexcrime"
     else:
         currchargetype = "othercrime"
@@ -296,7 +165,7 @@ def getResults():
     sexpriors = 0
     violsexpriors = 0
     otherpriors = 0
-    if convicted_before == True:
+    if convicted_before == "Yes":
         for charge in previousFeloniesValue:
             if charge in range(0, 32):
                 violpriors = violpriors + 1
@@ -306,6 +175,11 @@ def getResults():
                 violsexpriors = violsexpriors + 1
             else:
                 otherpriors = otherpriors + 1
+
+    if convicted_before == "No":
+        numpriors = 0
+    if convicted_before == "Yes":
+        numpriors = conviction_count
 
     #Parole release eligibility and calculations
     if currchargetype == "othercrime":
@@ -347,7 +221,7 @@ def getResults():
             parolemultiplier = 0.75
         else:
             eligibleparole = False
-
+    print(conviction_date)
     pretrialdetention = abs((conviction_date - arrest_date))
     sentencedeltadays = timedelta(days = totalsentence)
     if eligibleparole == True:
@@ -358,18 +232,13 @@ def getResults():
     else:
         paroleEligibilityString = "Your client is not eligible for parole."
 
-    if convicted_before == False:
-        numpriors = 0
-    if convicted_before == True:
-        numpriors = conviction_count
-
     #Good time eligibility and calculations
     if currchargetype == "othercrime":
         if numpriors == 0:
             eligibleGT = True
             GTmultiplier = 0.35
         else:
-            if habitual_offender == True:
+            if habitual_offender == "Yes":
                 eligibleGT = False
             else:
                 eligibleGT = True
@@ -379,7 +248,7 @@ def getResults():
             eligibleGT = True
             GTmultiplier = 0.75
         else:
-            if habitual_offender == True:
+            if habitual_offender == "Yes":
                 eligibleGT = False
             else:
                 if (sexpriors + violpriors + violsexpriors) > 0:
