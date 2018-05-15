@@ -217,13 +217,14 @@ def getResults():
             eligibleparole = False
 
     conviction_date2 = dateutil.parser.parse(conviction_date)
-    conviction_date2.strftime('%m/%d/%Y')
+    # conviction_date3 = conviction_date2.strftime('%m/%d/%Y')
     arrest_date2 = dateutil.parser.parse(arrest_date)
-    arrest_date2.strftime('%m/%d/%Y')
+    # arrest_date3 = arrest_date2.strftime('%m/%d/%Y')
     pretrialdetention = abs((conviction_date2 - arrest_date2))
     sentencedeltadays = timedelta(days = totalsentence)
     if eligibleparole == True:
-        parolereleasedate = conviction_date + (sentencedeltadays * parolemultiplier)
+        
+        parolereleasedate = conviction_date2 + (sentencedeltadays * parolemultiplier)
         paroledatestring= (str(parolereleasedate)[:10])
         paroleEligibilityString = ("Your client is eligible for parole after having served " +
         str(int(parolemultiplier*100)) + "%" + " of their sentence. ")
