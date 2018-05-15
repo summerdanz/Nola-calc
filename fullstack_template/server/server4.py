@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask import jsonify
 from json import *
 from flask_cors import CORS
+import dateutil.parser
 
 app = Flask(__name__, static_folder="../static/dist", template_folder="../static")
 CORS(app)
@@ -121,7 +122,6 @@ def post_select_felonies():
      # this will give you an array of values [0,1,2 etc] that correspond
      # to the index of the crime selected from the list
      # ie solicitation for murder =0; Second degree battery (RS 14:34.1) =4, etc;
-     # return jsonify(relation=relation) --- this is how you would return dataType
      return jsonify('OK')
 
 @app.route('/dates',  methods=['POST'])
@@ -137,13 +137,6 @@ def post_dates():
      conviction_date = json['convictDate']
      return jsonify('OK')
 
-
-# with app.app_context():
-#    getCrimeList()
-#    post_prev_felonies()
-#    post_crime_info()
-#    post_select_felonies()
-#    post_dates()
 
 @app.route("/results")
 def getResults():
@@ -221,8 +214,12 @@ def getResults():
             parolemultiplier = 0.75
         else:
             eligibleparole = False
-    print(conviction_date)
-    pretrialdetention = abs((conviction_date - arrest_date))
+
+    conviction_date2 = dateutil.parser.parse(conviction_date)
+    conviction_date2.strftime('%m/%d/%Y')
+    arrest_date2 = dateutil.parser.parse(arrest_date)
+    arrest_date2.strftime('%m/%d/%Y')
+    pretrialdetention = abs((conviction_date2 - arrest_date2))
     sentencedeltadays = timedelta(days = totalsentence)
     if eligibleparole == True:
         parolereleasedate = conviction_date + (sentencedeltadays * parolemultiplier)
