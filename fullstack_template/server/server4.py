@@ -259,7 +259,7 @@ def getResults():
     elif currchargetype == "sexualcrime" or currchargetype == "violsexcrime":
         eligibleGT = False
     if eligibleGT == True:
-        GTreleasedate = conviction_date + (sentencedeltadays * GTmultiplier)
+        GTreleasedate = conviction_date + (str(sentencedeltadays) * GTmultiplier)
         GTdatestring= (str(GTreleasedate)[:10])
         earlyReleaseString = ("Your client is eligible for good time release after having served " +
         str(int(GTmultiplier*100)) + "%" + " of their sentence. ")
@@ -267,7 +267,7 @@ def getResults():
         earlyReleaseString = "Your client is not eligible for good time release."
 
     ##Last possible release date
-    lastreleasedate = conviction_date + sentencedeltadays
+    lastreleasedate = conviction_date + str(sentencedeltadays)
     lastdatestring= (str(lastreleasedate)[:10])
     goodTimeReleaseDate = GTdatestring
     earlyRelease = earlyReleaseString
