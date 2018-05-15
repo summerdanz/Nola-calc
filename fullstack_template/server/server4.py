@@ -142,8 +142,8 @@ def post_dates():
 @app.route("/results")
 def getResults():
 
-    totalsentence = (sentence_month + (sentence_year*12))*30
-
+    totalsentence = (int(sentence_month) + (int(sentence_year)*12))*30
+    print(totalsentence)
     #Current charge classification
     if crime_selected in range(0, 32):
         currchargetype = "violentcrime"
@@ -222,8 +222,9 @@ def getResults():
     # arrest_date3 = arrest_date2.strftime('%m/%d/%Y')
     pretrialdetention = abs((conviction_date2 - arrest_date2))
     sentencedeltadays = timedelta(days = totalsentence)
+
     if eligibleparole == True:
-        
+
         parolereleasedate = conviction_date2 + (sentencedeltadays * parolemultiplier)
         paroledatestring= (str(parolereleasedate)[:10])
         paroleEligibilityString = ("Your client is eligible for parole after having served " +
